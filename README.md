@@ -1,3 +1,4 @@
 # comic_flutter
 
-A new Flutter project.
+Aufar MP Flutter Project.
+
