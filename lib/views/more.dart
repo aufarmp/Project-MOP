@@ -19,7 +19,6 @@ class More extends StatefulWidget {
 
 class _MoreState extends State<More> {
   bool _isDarkMode = themeNotifier.value == ThemeMode.dark;
-  final String _selectedLanguage = 'Indonesia';
   
   bool _isLoggedIn = false; 
   String _userName = 'Pengguna Tamu';
@@ -73,7 +72,6 @@ class _MoreState extends State<More> {
                   subtitle: 'Komik yang disimpan',
                   onTap: () {
                     _checkAuthBeforeAction(() {
-                      // [UPDATE] Navigasi ke Library
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const LibraryPage()));
                     });
                   },
@@ -83,7 +81,6 @@ class _MoreState extends State<More> {
                   title: 'Riwayat Bacaan',
                   onTap: () {
                     _checkAuthBeforeAction(() {
-                      // [UPDATE] Navigasi ke History
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const HistoryPage()));
                     });
                   },
@@ -91,7 +88,7 @@ class _MoreState extends State<More> {
               ],
             ),
 
-            // 3. BAGIAN PENGATURAN (Bisa diakses siapa saja)
+            // 3. BAGIAN PENGATURAN
             _buildMenuSection(
               title: 'Pengaturan',
               items: [
@@ -104,18 +101,12 @@ class _MoreState extends State<More> {
                     themeNotifier.value = value ? ThemeMode.dark : ThemeMode.light;
                   },
                 ),
-                _buildListTile(
-                  icon: Icons.language,
-                  title: 'Bahasa',
-                  trailingText: _selectedLanguage,
-                  onTap: () {},
-                ),
               ],
             ),
 
             const SizedBox(height: 24),
 
-            // 4. TOMBOL DINAMIS (Login vs Logout)
+            // 4. TOMBOL DINAMIS
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: _isLoggedIn 
@@ -186,11 +177,6 @@ class _MoreState extends State<More> {
               ],
             ),
           ),
-          if (_isLoggedIn)
-            IconButton(
-              icon: const Icon(Icons.edit_outlined, color: AppColors.primary),
-              onPressed: () {},
-            ),
         ],
       ),
     );
